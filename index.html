@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Narayan Chatalwar | Portfolio</title>
+
+    <meta name="title"
+        content="Narayan Chatalwar | Senior Software Engineer Portfolio | React, Next.js, MERN Developer" />
+    <meta name="description"
+        content="Narayan Chatalwar is a Senior Software Engineer with 3.6 years of experience in React.js, Next.js, Node.js and MERN stack. Built scalable applications used by 50K+ users with 40% performance improvements." />
+    <meta name="keywords"
+        content="Narayan Chatalwar, MERN Developer, React Developer India, Next.js Developer Pune, Senior Software Engineer Portfolio, Frontend Developer India, Full Stack Developer MERN, JavaScript Developer" />
+    <meta name="author" content="Narayan Chatalwar" />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <meta name="theme-color" content="#020617" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Narayan Chatalwar | Senior Software Engineer Portfolio" />
+    <meta property="og:description"
+        content="Explore projects, skills, and experience of Narayan Chatalwar - MERN Stack Developer with expertise in React & Next.js." />
+    <meta property="og:url" content="https://narayanchatalwar.com" />
+    <meta property="og:image" content="https://narayanchatalwar.com/preview.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Narayan Chatalwar | Software Engineer Portfolio" />
+    <meta name="twitter:description"
+        content="Senior Software Engineer skilled in React, Next.js, Node.js. Building scalable products with real-world impact." />
+    <meta name="twitter:image" content="https://narayanchatalwar.com/preview.png" />
+
+    <link rel="canonical" href="https://narayanchatalwar.com" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #020617;
+            --text: #e2e8f0;
+            --card: rgba(255, 255, 255, 0.05);
+            --accent: #22d3ee;
+        }
+
+        .light {
+            --bg: #ffffff;
+            --text: #0f172a;
+            --card: rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.4s;
+            overflow-x: hidden;
+        }
+
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .glass {
+            background: var(--card);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 16px;
+            transition: 0.3s;
+        }
+
+        .glass:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: 0.8s ease;
+        }
+
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #typing {
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* NEW CHAT UI CSS */
+        #chatIcon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.4);
+            font-size: 24px;
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+
+        #chatIcon:hover {
+            transform: scale(1.1);
+        }
+
+        #chatContainer {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 340px;
+            max-width: calc(100vw - 40px);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        body.light #chatContainer {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #chatBox::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chatBox::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #chatBox::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.5);
+            border-radius: 3px;
+        }
+
+        /* ========================================= */
+        /* Theme Toggle Container & Hide Logic       */
+        /* ========================================= */
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 22px;
+            z-index: 100;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .hide-toggle {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-15px);
+        }
+
+        /* ========================================= */
+        /* Animated Theme Icon SVG Styles            */
+        /* ========================================= */
+        .theme-icon {
+            width: 28px;
+            height: 28px;
+            color: #ffffff;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: rotate(-20deg);
+        }
+
+        .theme-icon .center-circle {
+            r: 9;
+            transition: r 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .theme-icon .moon-mask-circle {
+            cx: 10;
+            cy: 4;
+            r: 8;
+            transition: cx 0.5s cubic-bezier(0.23, 1, 0.32, 1), cy 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .theme-icon .sun-rays {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.5);
+            transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-origin: center;
+        }
+
+        body.light .theme-icon {
+            color: #000000;
+            transform: rotate(90deg);
+        }
+
+        body.light .theme-icon .center-circle {
+            r: 5;
+        }
+
+        body.light .theme-icon .moon-mask-circle {
+            cx: 25;
+            cy: 0;
+        }
+
+        body.light .theme-icon .sun-rays {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+    </style>
+
+    <script>
+        let favicon = document.querySelector("link[rel~='icon']");
+        if (!favicon) {
+            favicon = document.createElement('link');
+            favicon.rel = 'icon';
+            document.head.appendChild(favicon);
+        }
+
+        let shinePosition = -100;
+        let timeElapsed = 0;
+        let currentRotation = 0;
+        let isRotating = false;
+
+        function animateFavicon() {
+            shinePosition += 6;
+            if (shinePosition > 250) shinePosition = -100;
+
+            if (!isRotating) {
+                timeElapsed += 50;
+                if (timeElapsed >= 4000) {
+                    isRotating = true;
+                }
+            } else {
+                currentRotation += 18;
+                if (currentRotation >= 360) {
+                    currentRotation = 0;
+                    isRotating = false;
+                    timeElapsed = 0;
+                }
+            }
+
+            const svg = `
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+                <rect width='100' height='100' rx='22' fill='#000000'/>
+                <g transform="translate(50,50) rotate(${currentRotation}) translate(-50,-50)">
+                    <defs>
+                        <clipPath id="text-clip">
+                            <text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-size='65' font-weight='bold' font-family='Arial'>N</text>
+                        </clipPath>
+                    </defs>
+                    <text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-size='65' font-weight='bold' fill='#ffffff' font-family='Arial'>N</text>
+                    <g clip-path="url(#text-clip)">
+                        <rect x="${shinePosition}" y="-20" width="20" height="150" fill="#87CEEB" transform="skewX(-30)" />
+                    </g>
+                </g>
+            </svg>`;
+
+            favicon.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+        }
+        setInterval(animateFavicon, 50);
+    </script>
+</head>
+
+<body>
+
+    <canvas id="bg"></canvas>
+
+    <div id="themeToggle"></div>
+
+    <section class="h-screen flex flex-col justify-center items-center text-center px-6 pointer-events-none">
+        <div class="pointer-events-auto">
+            <h1 class="text-5xl font-bold mb-4">Narayan Chatalwar</h1>
+            <h2 id="typing"
+                class="text-cyan-400 text-xl md:text-2xl z-10 relative font-medium min-h-[32px] inline-block"></h2>
+            <p class="mt-4 text-lg opacity-80">3.6 Years • Senior Software Engineer</p>
+        </div>
+    </section>
+
+    <section class="section py-24 text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl mb-4">About</h2>
+        <p class="px-6">
+            Frontend Engineer with 3.6 years of experience building scalable, high-performance applications
+            using React.js & Next.js across SaaS, healthcare, and AI domains. Improved performance by 40%.
+        </p>
+    </section>
+
+    <section class="section py-20 text-center">
+        <h2 class="text-3xl mb-10">Tech Stack</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto px-6">
+            <div class="glass">React.js</div>
+            <div class="glass">Next.js</div>
+            <div class="glass">JavaScript (ES6+)</div>
+            <div class="glass">TypeScript</div>
+            <div class="glass">Node.js</div>
+            <div class="glass">Express.js</div>
+            <div class="glass">MongoDB</div>
+            <div class="glass">Redux Toolkit</div>
+            <div class="glass">Tailwind CSS</div>
+            <div class="glass">Material UI</div>
+            <div class="glass">Ant Design</div>
+            <div class="glass">REST APIs</div>
+            <div class="glass">Jest</div>
+            <div class="glass">Jenkins</div>
+            <div class="glass">Postman</div>
+            <div class="glass">Swagger</div>
+        </div>
+    </section>
+
+    <section class="section py-20 text-center">
+        <h2 class="text-3xl mb-6">Experience</h2>
+        <div class="space-y-6 w-fit mx-auto text-left px-6">
+            <div class="glass p-8">
+                <h3 class="font-bold text-lg">Senior Software Engineer • Pune</h3>
+                <ul class="list-disc ml-5 text-sm mt-2 space-y-1">
+                    <li>Led frontend development using React.js & Next.js</li>
+                    <li>Improved application performance by ~40%</li>
+                    <li>Implemented SSR & dynamic routing</li>
+                    <li>Built scalable UI systems for 50K+ users</li>
+                    <li>Implemented authentication (JWT, RBAC)</li>
+                    <li>Worked closely with backend teams for API design</li>
+                    <li>Followed Agile & sprint-based delivery model</li>
+                </ul>
+                <p class="text-xs mt-2 opacity-60">Tech: React, Next.js, TypeScript, Redux Toolkit</p>
+            </div>
+            <div class="glass p-8">
+                <h3 class="font-bold text-lg">Software Engineer • Bengaluru</h3>
+                <ul class="list-disc ml-5 text-sm mt-2 space-y-1">
+                    <li>Developed full-stack features using MERN stack</li>
+                    <li>Built responsive UI from Figma designs</li>
+                    <li>Integrated REST APIs and authentication flows</li>
+                    <li>Reduced UI bugs by ~30%</li>
+                    <li>Worked across domains: SEO, AI tools, healthcare</li>
+                </ul>
+                <p class="text-xs mt-2 opacity-60">Tech: React, Node.js, Express, MongoDB</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section py-20 text-center">
+        <h2 class="text-3xl mb-6">Projects</h2>
+        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto px-6">
+            <div class="glass text-left p-8">
+                <h3 class="font-bold text-lg">AI Chat Platform</h3>
+                <ul class="text-sm mt-2 space-y-1">
+                    <li>• Built real-time chat system using Socket.IO</li>
+                    <li>• Integrated AI APIs for intelligent responses</li>
+                    <li>• Managed global state using Redux Toolkit</li>
+                    <li>• Implemented typing indicators & retry logic</li>
+                    <li>• Optimized rendering for better performance</li>
+                </ul>
+                <p class="text-xs mt-2 opacity-60">React, Redux Toolkit, Socket.IO, Material UI</p>
+            </div>
+            <div class="glass text-left p-8">
+                <h3 class="font-bold text-lg">SEO Dashboard Platform</h3>
+                <ul class="text-sm mt-2 space-y-1">
+                    <li>• Built scalable dashboard using Next.js</li>
+                    <li>• Implemented JWT-based authentication</li>
+                    <li>• Improved page performance by 30%</li>
+                    <li>• Designed reusable UI components</li>
+                    <li>• Integrated analytics & reporting modules</li>
+                </ul>
+                <p class="text-xs mt-2 opacity-60">Next.js, Redux Toolkit, Ant Design</p>
+            </div>
+            <div class="glass text-left p-8">
+                <h3 class="font-bold text-lg">E-commerce Platform</h3>
+                <ul class="text-sm mt-2 space-y-1">
+                    <li>• Developed product listing & cart system</li>
+                    <li>• Integrated payment flow & order tracking</li>
+                    <li>• Built responsive UI for all devices</li>
+                </ul>
+                <p class="text-xs mt-2 opacity-60">React, Node.js, MongoDB</p>
+            </div>
+            <div class="glass text-left p-8">
+                <h3 class="font-bold text-lg">Healthcare Management System</h3>
+                <ul class="text-sm mt-2 space-y-1">
+                    <li>• Built patient & appointment management UI</li>
+                    <li>• Integrated backend APIs for real-time data</li>
+                    <li>• Ensured high performance & reliability</li>
+                </ul>
+                <p class="text-xs mt-2 opacity-60">React, Express.js</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section py-20 text-center">
+        <h2 class="text-3xl mb-10">Domains Worked In</h2>
+        <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto px-6">
+            <span class="glass">AI Applications</span>
+            <span class="glass">SEO Platforms</span>
+            <span class="glass">E-commerce</span>
+            <span class="glass">Healthcare</span>
+            <span class="glass">SaaS Products</span>
+        </div>
+    </section>
+
+    <section class="section py-20 text-center">
+        <h2 class="text-3xl mb-10">Key Achievements</h2>
+        <div class="space-y-4 max-w-3xl mx-auto px-6 text-left">
+            <div class="glass">🚀 Improved frontend performance by 40%</div>
+            <div class="glass">📈 Reduced UI bugs by 30%</div>
+            <div class="glass">👥 Built products used by 50K+ users</div>
+            <div class="glass">⚡ Optimized SEO & page load speed</div>
+            <div class="glass">🧩 Designed reusable component architecture</div>
+        </div>
+    </section>
+
+    <section class="section py-24 text-center px-6">
+        <h2 class="text-4xl font-bold mb-4">Let’s Build Something Amazing 🚀</h2>
+        <p class="max-w-2xl mx-auto opacity-80 mb-10">
+            I'm currently open to exciting opportunities and freelance projects.
+            Whether you have an idea, a product, or just want to connect — feel free to reach out.
+        </p>
+        <div class="glass max-w-xl mx-auto p-8 space-y-6">
+            <div class="flex justify-center items-center gap-2 text-sm">
+                <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
+                <span>Available for opportunities</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:narayanchatalwar@gmail.com">
+                    <button class="glass px-6 py-3 font-medium hover:scale-110 transition">
+                        📧 Email Me
+                    </button>
+                </a>
+                <a href="https://wa.me/917499039989" target="_blank">
+                    <button class="glass px-6 py-3 font-medium hover:scale-110 transition">
+                        💬 WhatsApp
+                    </button>
+                </a>
+            </div>
+            <div class="text-sm opacity-70 pt-4 flex justify-center gap-4">
+                <a href="https://linkedin.com/in/narayanchatalwar" target="_blank"
+                    class="glass px-4 py-2 text-cyan-400 hover:scale-110 transition">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/Narayan-Chatalwar" target="_blank"
+                    class="glass px-4 py-2 text-cyan-400 hover:scale-110 transition">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="chatIcon">💬</div>
+    <div id="chatContainer">
+        <div class="px-4 py-3 border-b border-gray-600/30 flex justify-between items-center bg-black/10">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                <span class="font-bold text-[var(--text)]">AI Assistant</span>
+            </div>
+            <button id="closeChatBtn" class="text-gray-400 hover:text-[var(--text)] transition">✕</button>
+        </div>
+
+        <div id="chatBox" class="p-4 h-72 overflow-y-auto flex flex-col gap-3 text-sm scroll-smooth bg-black/5">
+        </div>
+
+        <div class="p-3 border-t border-gray-600/30 bg-black/10">
+            <form id="chatForm" class="flex gap-2">
+                <input id="chatInput" type="text" autocomplete="off" placeholder="Ask about Narayan..."
+                    class="w-full bg-transparent border border-gray-500/50 rounded-full px-4 py-2 text-[var(--text)] outline-none focus:border-cyan-400 transition placeholder-gray-500" />
+                <button type="submit"
+                    class="bg-cyan-400 text-black rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center hover:scale-105 transition">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z">
+                        </path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /* =========================
+           ORIGINAL TYPING EFFECT
+        ========================= */
+        const roles = ["Senior Software Engineer", "React Specialist", "Full Stack Developer"];
+        let typeI = 0, typeJ = 0, typeCur = "";
+        function typeText() {
+            if (typeJ < roles[typeI].length) {
+                typeCur += roles[typeI][typeJ++];
+                document.getElementById('typing').innerText = typeCur;
+            } else {
+                setTimeout(() => { typeCur = ""; typeJ = 0; typeI = (typeI + 1) % roles.length; }, 1500);
+            }
+            setTimeout(typeText, 80);
+        }
+        typeText();
+
+        /* =========================
+           THREE SETUP & STARS
+        ========================= */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg'), antialias: true, alpha: true });
+        renderer.setSize(innerWidth, innerHeight);
+        camera.position.z = 5;
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+            mouseX = (e.clientX / innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / innerHeight - 0.5) * 2;
+        });
+
+        const stars = [];
+        for (let i = 0; i < 400; i++) {
+            const s = new THREE.Mesh(
+                new THREE.SphereGeometry(0.02),
+                new THREE.MeshBasicMaterial({ color: 0xffffff })
+            );
+            s.position.set(
+                (Math.random() - 0.5) * 60,
+                (Math.random() - 0.5) * 60,
+                (Math.random() - 0.5) * 60
+            );
+            scene.add(s);
+            stars.push(s);
+        }
+
+        /* =========================
+           CUSTOM TECH MODELS 
+        ========================= */
+        function createReactModel() {
+            const group = new THREE.Group();
+            const mat = new THREE.MeshBasicMaterial({ wireframe: true });
+            group.add(new THREE.Mesh(new THREE.SphereGeometry(0.25, 8, 8), mat));
+            for (let i = 0; i < 3; i++) {
+                const r = new THREE.Mesh(new THREE.TorusGeometry(0.7, 0.04, 8, 32), mat);
+                r.rotation.y = Math.PI / 2;
+                if (i === 0) r.rotation.x = Math.PI / 2;
+                if (i === 1) r.rotation.z = Math.PI / 3;
+                if (i === 2) r.rotation.z = -Math.PI / 3;
+                group.add(r);
+            }
+            return group;
+        }
+
+        function createDatabaseModel() {
+            const group = new THREE.Group();
+            const mat = new THREE.MeshBasicMaterial({ wireframe: true });
+            for (let i = 0; i < 3; i++) {
+                const disc = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.25, 16), mat);
+                disc.position.y = (i - 1) * 0.45;
+                group.add(disc);
+            }
+            return group;
+        }
+
+        function createBrowserModel() {
+            const group = new THREE.Group();
+            const mat = new THREE.MeshBasicMaterial({ wireframe: true });
+            const screen = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.2, 0.1), mat);
+            const stand = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.4, 0.1), mat);
+            stand.position.y = -0.8;
+            const base = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.1, 0.4), mat);
+            base.position.y = -1.0;
+            group.add(screen, stand, base);
+            return group;
+        }
+
+        function createHexagonModel() {
+            const group = new THREE.Group();
+            const mat = new THREE.MeshBasicMaterial({ wireframe: true });
+            const hex = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.3, 6), mat);
+            hex.rotation.x = Math.PI / 2;
+            group.add(hex);
+            return group;
+        }
+
+        function createServerRackModel() {
+            const group = new THREE.Group();
+            const mat = new THREE.MeshBasicMaterial({ wireframe: true });
+            for (let i = 0; i < 3; i++) {
+                const rack = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.35, 0.8), mat);
+                rack.position.y = (i - 1) * 0.5;
+                group.add(rack);
+            }
+            return group;
+        }
+
+        const objs = [];
+        function addObj(meshOrGroup, x, y, z) {
+            meshOrGroup.position.set(x, y, z);
+
+            meshOrGroup.traverse((child) => {
+                if (child.isMesh) {
+                    child.material = child.material.clone();
+                }
+            });
+
+            const isMobileInit = window.innerWidth < 768;
+            const initSpeed = isMobileInit ? 0.015 : 0.03;
+
+            meshOrGroup.userData = {
+                side: x > 0 ? 1 : -1,
+                vx: (Math.random() - 0.5) * initSpeed,
+                vy: (Math.random() - 0.5) * initSpeed,
+                baseScale: 1,
+                baseColor: 0xffffff
+            };
+
+            scene.add(meshOrGroup);
+            objs.push(meshOrGroup);
+        }
+
+        // Add relevant web engineering models
+        addObj(createReactModel(), -6, 3, -2);
+        addObj(createDatabaseModel(), 6, -3, -3);
+        addObj(createBrowserModel(), -7, -4, -4);
+        addObj(createHexagonModel(), 7, 4, -2);
+        addObj(createServerRackModel(), -7, 0, -5);
+
+        /* =========================
+           RAYCASTING (CLICK MODELS)
+        ========================= */
+        const raycaster = new THREE.Raycaster();
+        const mouseVector = new THREE.Vector2();
+
+        window.addEventListener('pointerdown', (event) => {
+            if (event.target.tagName !== "CANVAS") return; // Ignore clicks on text/UI
+
+            mouseVector.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseVector.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mouseVector, camera);
+
+            const intersects = raycaster.intersectObjects(objs, true);
+
+            if (intersects.length > 0) {
+                let clickedObj = intersects[0].object;
+
+                while (clickedObj && !objs.includes(clickedObj)) {
+                    clickedObj = clickedObj.parent;
+                }
+
+                if (clickedObj) {
+                    const isMobile = window.innerWidth < 768;
+                    const boost = isMobile ? 0.06 : 0.12;
+
+                    clickedObj.userData.vx = (Math.random() - 0.5) * boost;
+                    clickedObj.userData.vy = (Math.random() - 0.5) * boost;
+
+                    clickedObj.scale.set(
+                        clickedObj.userData.baseScale * 1.6,
+                        clickedObj.userData.baseScale * 0.4,
+                        clickedObj.userData.baseScale * 1.6
+                    );
+                }
+            }
+        });
+
+        /* =========================
+           THEME & SUN/MOON ICON
+        ========================= */
+        const themeToggle = document.getElementById('themeToggle');
+
+        themeToggle.innerHTML = `
+        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <mask id="moon-mask">
+              <rect x="0" y="0" width="100%" height="100%" fill="white" />
+              <circle class="moon-mask-circle" cx="10" cy="4" r="8" fill="black" />
+            </mask>
+          </defs>
+          <circle class="center-circle" cx="12" cy="12" r="9" fill="currentColor" mask="url(#moon-mask)" />
+          <g class="sun-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </g>
+        </svg>`;
+
+        let isLight = localStorage.getItem("theme") === "light";
+
+        function applyTheme() {
+            document.body.classList.toggle("light", isLight);
+            renderer.setClearColor(isLight ? 0xffffff : 0x020617, 1);
+            stars.forEach(s => s.material.color.set(isLight ? 0x000000 : 0xffffff));
+
+            objs.forEach(o => {
+                o.userData.baseColor = isLight ? 0x000000 : 0xffffff;
+                o.traverse((child) => {
+                    if (child.isMesh) {
+                        child.material.color.set(o.userData.baseColor);
+                    }
+                });
+            });
+        }
+
+        themeToggle.onclick = () => {
+            isLight = !isLight;
+            localStorage.setItem("theme", isLight ? "light" : "dark");
+            applyTheme();
+        };
+
+        applyTheme();
+
+        /* =========================
+           MOBILE FIX
+        ========================= */
+        function adjustForMobile() {
+            const isMobile = window.innerWidth < 768;
+            objs.forEach((o, i) => {
+                if (isMobile) {
+                    o.userData.baseScale = 0.2;
+                    o.scale.set(0.2, 0.2, 0.2);
+                } else {
+                    o.userData.baseScale = 1;
+                    o.scale.set(1, 1, 1);
+                }
+            });
+        }
+        adjustForMobile();
+
+        /* =========================
+           COLLISION & FORCEFIELD PHYSICS
+        ========================= */
+        function handleCollisionsAndMovement(o) {
+            const isMobile = window.innerWidth < 768;
+            const maxNormalSpeed = isMobile ? 0.015 : 0.03;
+
+            // Friction to slow down after click boost
+            const currentSpeed = Math.sqrt(o.userData.vx * o.userData.vx + o.userData.vy * o.userData.vy);
+            if (currentSpeed > maxNormalSpeed) {
+                o.userData.vx *= 0.98;
+                o.userData.vy *= 0.98;
+            } else if (currentSpeed < maxNormalSpeed * 0.3) {
+                o.userData.vx *= 1.02;
+                o.userData.vy *= 1.02;
+            }
+
+            o.position.x += o.userData.vx;
+            o.position.y += o.userData.vy;
+
+            // Viewport boundaries
+            const dist = camera.position.z - o.position.z;
+            const vFov = THREE.MathUtils.degToRad(camera.fov);
+            const visibleHeight = 2 * Math.tan(vFov / 2) * dist;
+            const visibleWidth = visibleHeight * camera.aspect;
+
+            const margin = o.userData.baseScale * 1.5;
+
+            const limitXLeft = camera.position.x - visibleWidth / 2 + margin;
+            const limitXRight = camera.position.x + visibleWidth / 2 - margin;
+            const limitYBottom = camera.position.y - visibleHeight / 2 + margin;
+            const limitYTop = camera.position.y + visibleHeight / 2 - margin;
+
+            let collided = false;
+
+            // Outer Bounds Bounce
+            if (o.position.x > limitXRight) {
+                o.position.x = limitXRight; o.userData.vx = -Math.abs(o.userData.vx); collided = true;
+            } else if (o.position.x < limitXLeft) {
+                o.position.x = limitXLeft; o.userData.vx = Math.abs(o.userData.vx); collided = true;
+            }
+
+            if (o.position.y > limitYTop) {
+                o.position.y = limitYTop; o.userData.vy = -Math.abs(o.userData.vy); collided = true;
+            } else if (o.position.y < limitYBottom) {
+                o.position.y = limitYBottom; o.userData.vy = Math.abs(o.userData.vy); collided = true;
+            }
+
+            // --- HERO TEXT KEEP-OUT ZONE (RADIAL FORCEFIELD) ---
+            if (window.scrollY < window.innerHeight * 0.6) {
+                const dx = o.position.x - camera.position.x;
+                const dy = o.position.y - camera.position.y;
+                const distFromCenter = Math.sqrt(dx * dx + dy * dy);
+
+                const keepOutRadius = isMobile ? 3.5 : 5.5;
+
+                if (distFromCenter < keepOutRadius && distFromCenter > 0) {
+                    const angle = Math.atan2(dy, dx);
+                    o.position.x = camera.position.x + Math.cos(angle) * keepOutRadius;
+                    o.position.y = camera.position.y + Math.sin(angle) * keepOutRadius;
+
+                    const cSpeed = Math.sqrt(o.userData.vx ** 2 + o.userData.vy ** 2);
+                    o.userData.vx = Math.cos(angle) * cSpeed;
+                    o.userData.vy = Math.sin(angle) * cSpeed;
+
+                    collided = true;
+                }
+            }
+
+            // Visual Squash & Stretch on impact
+            if (collided) {
+                o.scale.set(o.userData.baseScale * 1.3, o.userData.baseScale * 0.7, o.userData.baseScale * 1.3);
+            }
+
+            o.scale.lerp(new THREE.Vector3(o.userData.baseScale, o.userData.baseScale, o.userData.baseScale), 0.1);
+        }
+
+        /* =========================
+           SCROLL & RESIZE
+        ========================= */
+        window.addEventListener("resize", () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            adjustForMobile();
+        });
+
+        let scrollY = 0;
+        window.addEventListener("scroll", () => {
+            scrollY = window.scrollY;
+
+            if (scrollY > 150) {
+                themeToggle.classList.add("hide-toggle");
+            } else {
+                themeToggle.classList.remove("hide-toggle");
+            }
+
+            document.querySelectorAll(".section").forEach(sec => {
+                if (sec.getBoundingClientRect().top < window.innerHeight * 0.85) {
+                    sec.classList.add("show");
+                }
+            });
+        });
+
+        /* =========================
+           ANIMATION LOOP
+        ========================= */
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const isMobile = window.innerWidth < 768;
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            // Camera parallax on desktop only
+            if (!isMobile) {
+                camera.position.x = targetX * 2;
+                camera.position.y = -targetY * 2;
+            }
+
+            camera.position.z = 5 + scrollY * 0.002;
+
+            stars.forEach(s => {
+                s.position.z += 0.02;
+                if (s.position.z > 5) s.position.z = -50;
+            });
+
+            objs.forEach((o) => {
+                o.rotation.x += 0.005;
+                o.rotation.y += 0.005;
+                handleCollisionsAndMovement(o);
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        /* =========================
+           ADVANCED CHATBOT
+        ========================= */
+        const chatIcon = document.getElementById('chatIcon');
+        const chatContainer = document.getElementById('chatContainer');
+        const chatBox = document.getElementById('chatBox');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const closeChatBtn = document.getElementById('closeChatBtn');
+        let greeted = false;
+        let isTyping = false;
+
+        function scrollChat() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "flex justify-end mb-2";
+            wrapper.innerHTML = `<div class="bg-cyan-400 text-slate-900 rounded-2xl rounded-tr-sm px-4 py-2 max-w-[85%] break-words font-medium shadow-md">${text}</div>`;
+            chatBox.appendChild(wrapper);
+            scrollChat();
+        }
+
+        function addBotMessage(text) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "flex justify-start mb-2";
+            wrapper.innerHTML = `<div class="bg-gray-700/60 text-white rounded-2xl rounded-tl-sm px-4 py-2 max-w-[90%] break-words whitespace-pre-wrap leading-relaxed shadow-sm border border-gray-600/30">${text}</div>`;
+            chatBox.appendChild(wrapper);
+            scrollChat();
+        }
+
+        function showTypingIndicator() {
+            const wrapper = document.createElement("div");
+            wrapper.id = "typingIndicator";
+            wrapper.className = "flex justify-start mb-2";
+            wrapper.innerHTML = `
+                <div class="bg-gray-700/60 text-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm flex gap-1 items-center h-9">
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0s"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
+                    <span class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+                </div>`;
+            chatBox.appendChild(wrapper);
+            scrollChat();
+        }
+
+        function removeTypingIndicator() {
+            const ind = document.getElementById("typingIndicator");
+            if (ind) ind.remove();
+        }
+        
+        function getBotResponse(q) {
+            // 1. Identity & About
+            if (/\b(who|about|background|bio|profile|intro|name|doing|developer)\b/i.test(q)) {
+                return "Narayan Chatalwar is a Senior Software Engineer based in India. He specializes in building scalable, high-performance web applications using the MERN stack, with a strong focus on React.js and Next.js.";
+            }
+            
+            // 2. Greetings
+            if (/\b(hi|hello|hey|greetings|morning|afternoon|evening|start|sup)\b/i.test(q)) {
+                return "Hello! How can I help you learn more about Narayan today?";
+            }
+            
+            // 3. Experience & Work History
+            if (/\b(experience|work|job|career|role|history|worked|company|companies|years)\b/i.test(q)) {
+                return "Narayan has 3.6 years of experience. He is currently a Senior Software Engineer in Pune, where he improved application performance by 40% and built UI systems for 50K+ users. Previously, he worked in Bengaluru as a Software Engineer.";
+            }
+            
+            // 4. Skills & Technologies
+            if (/\b(skill|skills|tech|stack|react|node|javascript|typescript|language|tools?|technology|frameworks?|database|frontend|backend)\b/i.test(q)) {
+                return "He is highly skilled in the MERN stack: React.js, Next.js, Node.js, Express, MongoDB, TypeScript, and state management like Redux Toolkit. He also uses Tailwind CSS and Material UI for styling.";
+            }
+            
+            // 5. Projects & Portfolio
+            if (/\b(project|projects|portfolio|build|built|create|app|apps|products?|made|developed)\b/i.test(q)) {
+                return "He has built several complex products, including an AI Chat Platform using Socket.IO, a high-performance SEO Dashboard in Next.js, an E-commerce platform, and a Healthcare Management System.";
+            }
+            
+            // 6. Contact & Hiring
+            if (/\b(contact|hire|email|phone|call|reach|number|whatsapp|message|connect|talk)\b/i.test(q)) {
+                return "You can reach Narayan directly at narayanchatalwar@gmail.com, or drop him a message on WhatsApp at +91 7499039989.";
+            }
+            
+            // 7. Resume & Links
+            if (/\b(resume|cv|document|file|linkedin|github|social)\b/i.test(q)) {
+                return "For a detailed resume or to see his code, please check out his LinkedIn and GitHub profiles linked at the bottom of the page, or email him directly!";
+            }
+            
+            // Dynamic Fallback for ANY unrecognized question
+            return `That's an interesting question about "${q}". As Narayan's portfolio assistant, my core focus is on his expertise as a Senior Frontend/MERN Developer. However, his strong problem-solving skills allow him to adapt to many complex topics! I highly recommend reaching out to him directly via Email or WhatsApp to discuss this further.`;
+        }
+        
+        function simulateBotReply(userText) {
+            isTyping = true;
+            chatInput.disabled = true;
+
+            showTypingIndicator();
+
+            const thinkingTime = Math.floor(Math.random() * 700) + 800;
+
+            setTimeout(() => {
+                removeTypingIndicator();
+                addBotMessage(getBotResponse(userText));
+
+                // Always add suggestions back at the bottom of the chat to keep the user engaged
+                addSuggestions();
+
+                isTyping = false;
+                chatInput.disabled = false;
+                chatInput.focus();
+            }, thinkingTime);
+        }
+
+        function addSuggestions() {
+            // Remove old suggestions so they don't clutter the chat history
+            const oldSuggestions = document.getElementById("suggestionWrapper");
+            if (oldSuggestions) oldSuggestions.remove();
+
+            const wrapper = document.createElement("div");
+            wrapper.id = "suggestionWrapper";
+            wrapper.className = "flex flex-wrap gap-2 mt-1 mb-3";
+
+            ["Experience", "Tech Stack", "Projects", "Contact"].forEach(label => {
+                const btn = document.createElement("button");
+                btn.className = "text-xs border border-cyan-400/50 text-cyan-400 hover:bg-cyan-400 hover:text-black px-3 py-1.5 rounded-full transition font-medium";
+                btn.innerText = label;
+                btn.onclick = () => {
+                    if (isTyping) return;
+                    addUserMessage(label);
+                    simulateBotReply(label);
+                };
+                wrapper.appendChild(btn);
+            });
+            chatBox.appendChild(wrapper);
+            scrollChat();
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text || isTyping) return;
+
+            addUserMessage(text);
+            chatInput.value = "";
+            simulateBotReply(text);
+        });
+
+        // Open Chat
+        chatIcon.addEventListener('click', () => {
+            chatContainer.style.display = "flex";
+            chatIcon.style.display = "none";
+
+            if (!greeted) {
+                isTyping = true;
+                showTypingIndicator();
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    addBotMessage("👋 Hi there! I'm Narayan's AI assistant.\n\nAsk me anything about his skills, experience, or projects!");
+                    addSuggestions();
+                    isTyping = false;
+                    greeted = true;
+                }, 1000);
+            }
+        });
+
+        // Close Chat
+        closeChatBtn.addEventListener('click', () => {
+            chatContainer.style.display = "none";
+            chatIcon.style.display = "flex";
+        });
+    </script>
+</body>
+
+</html>
