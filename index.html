@@ -24,16 +24,16 @@
     <meta property="og:title" content="Narayan Chatalwar | Senior Software Engineer Portfolio" />
     <meta property="og:description"
         content="Explore projects, skills, and experience of Narayan Chatalwar - MERN Stack Developer with expertise in React & Next.js." />
-    <meta property="og:url" content="https://narayanchatalwar.com" />
-    <meta property="og:image" content="https://narayanchatalwar.com/preview.png" />
+    <meta property="og:url" content="https://narayan-chatalwar.vercel.app" />
+    <meta property="og:image" content="https://narayan-chatalwar.vercel.app/preview.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Narayan Chatalwar | Software Engineer Portfolio" />
     <meta name="twitter:description"
         content="Senior Software Engineer skilled in React, Next.js, Node.js. Building scalable products with real-world impact." />
-    <meta name="twitter:image" content="https://narayanchatalwar.com/preview.png" />
+    <meta name="twitter:image" content="https://narayan-chatalwar.vercel.app/preview.png" />
 
-    <link rel="canonical" href="https://narayanchatalwar.com" />
+    <link rel="canonical" href="https://narayan-chatalwar.vercel.app" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -423,6 +423,38 @@
         </div>
     </section>
 
+<section class="section py-24 text-center px-6">
+    <h2 class="text-3xl font-bold mb-4 text-[var(--text)] tracking-tight">Technical Journey & Roadmap</h2>
+    
+    <div class="max-w-md mx-auto mb-12">
+        <p class="text-[var(--text)] opacity-50 text-sm leading-relaxed mx-auto">
+            Download my latest resume to see my project history, technical certifications, and full-stack expertise in action.
+        </p>
+    </div>
+
+    <div class="flex justify-center">
+        <a href="https://drive.google.com/uc?export=download&id=1-CXyLccVa6a1CLFm7U5DIuX2JWp5kii6" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="inline-block no-underline">
+            
+            <div class="glass relative flex items-center gap-5 px-12 py-5 cursor-pointer">
+                <span class="relative flex h-3.5 w-3.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.9)]"></span>
+                </span>
+                
+                <span class="text-[var(--text)] dark:text-cyan-400 font-bold uppercase tracking-[0.2em] text-sm">
+                    Resume
+                </span>
+                
+                <span class="text-[var(--text)] opacity-30 font-mono text-[10px] border-l border-[var(--text)]/20 pl-4 uppercase">
+                    PDF
+                </span>
+            </div>
+        </a>
+    </div>
+</section>
     <section class="section py-24 text-center px-6">
         <h2 class="text-4xl font-bold mb-4">Let’s Build Something Amazing 🚀</h2>
         <p class="max-w-2xl mx-auto opacity-80 mb-10">
@@ -925,47 +957,47 @@
             const ind = document.getElementById("typingIndicator");
             if (ind) ind.remove();
         }
-        
+
         function getBotResponse(q) {
             // 1. Identity & About
             if (/\b(who|about|background|bio|profile|intro|name|doing|developer)\b/i.test(q)) {
                 return "Narayan Chatalwar is a Senior Software Engineer based in India. He specializes in building scalable, high-performance web applications using the MERN stack, with a strong focus on React.js and Next.js.";
             }
-            
+
             // 2. Greetings
             if (/\b(hi|hello|hey|greetings|morning|afternoon|evening|start|sup)\b/i.test(q)) {
                 return "Hello! How can I help you learn more about Narayan today?";
             }
-            
+
             // 3. Experience & Work History
             if (/\b(experience|work|job|career|role|history|worked|company|companies|years)\b/i.test(q)) {
                 return "Narayan has 3.6 years of experience. He is currently a Senior Software Engineer in Pune, where he improved application performance by 40% and built UI systems for 50K+ users. Previously, he worked in Bengaluru as a Software Engineer.";
             }
-            
+
             // 4. Skills & Technologies
             if (/\b(skill|skills|tech|stack|react|node|javascript|typescript|language|tools?|technology|frameworks?|database|frontend|backend)\b/i.test(q)) {
                 return "He is highly skilled in the MERN stack: React.js, Next.js, Node.js, Express, MongoDB, TypeScript, and state management like Redux Toolkit. He also uses Tailwind CSS and Material UI for styling.";
             }
-            
+
             // 5. Projects & Portfolio
             if (/\b(project|projects|portfolio|build|built|create|app|apps|products?|made|developed)\b/i.test(q)) {
                 return "He has built several complex products, including an AI Chat Platform using Socket.IO, a high-performance SEO Dashboard in Next.js, an E-commerce platform, and a Healthcare Management System.";
             }
-            
+
             // 6. Contact & Hiring
             if (/\b(contact|hire|email|phone|call|reach|number|whatsapp|message|connect|talk)\b/i.test(q)) {
                 return "You can reach Narayan directly at narayanchatalwar@gmail.com, or drop him a message on WhatsApp at +91 7499039989.";
             }
-            
+
             // 7. Resume & Links
             if (/\b(resume|cv|document|file|linkedin|github|social)\b/i.test(q)) {
                 return "For a detailed resume or to see his code, please check out his LinkedIn and GitHub profiles linked at the bottom of the page, or email him directly!";
             }
-            
+
             // Dynamic Fallback for ANY unrecognized question
             return `That's an interesting question about "${q}". As Narayan's portfolio assistant, my core focus is on his expertise as a Senior Frontend/MERN Developer. However, his strong problem-solving skills allow him to adapt to many complex topics! I highly recommend reaching out to him directly via Email or WhatsApp to discuss this further.`;
         }
-        
+
         function simulateBotReply(userText) {
             isTyping = true;
             chatInput.disabled = true;
